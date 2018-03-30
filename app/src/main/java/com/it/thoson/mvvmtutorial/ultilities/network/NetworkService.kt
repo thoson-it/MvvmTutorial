@@ -21,7 +21,7 @@ interface NetworkService {
     val videos: Observable<Response<ArrayList<VideoInfo>>>
 
     @Headers("Content-Type: application/json")
-    @POST("5a26725b30000004120e8740")
+    @POST("/v2/5a26725b30000004120e8740")
     fun getLogin(@Body user: UserInfo): Observable<Response<AccountInfo>>
 
 }

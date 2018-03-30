@@ -1,9 +1,8 @@
 package com.it.thoson.mvvmtutorial.viewmodel
 
 import android.arch.lifecycle.MutableLiveData
-import android.util.Log
 import com.it.thoson.mvvmtutorial.model.AccountInfo
-import com.it.thoson.mvvmtutorial.model.UserInfo
+import com.it.thoson.mvvmtutorial.model.VideoInfo
 import com.it.thoson.mvvmtutorial.ultilities.network.NetworkError
 import com.it.thoson.mvvmtutorial.ultilities.network.Service
 import rx.subscriptions.CompositeSubscription
@@ -12,27 +11,26 @@ import java.util.ArrayList
 import javax.inject.Inject
 
 /**
- * Created by sonlt on 3/29/18.
+ * Created by sonlt on 3/30/18.
  */
-class LoginViewModel {
+class ListVideoViewModel {
+
     lateinit var mService: Service
     lateinit var mSubscription: CompositeSubscription
 
+    var videos: MutableLiveData<ArrayList<VideoInfo>> = MutableLiveData()
+
     @Inject
     constructor(service: Service) {
-        this.mService = service
+        mService = service
         mSubscription = CompositeSubscription()
     }
 
-    var accountInfo: AccountInfo? = null
-    var account: MutableLiveData<AccountInfo> = MutableLiveData()
-    var userInfo: UserInfo = UserInfo("", "")
-
     fun login() {
-        var subscription = mService.getLogin(userInfo, object : Service.ApiCallback<AccountInfo> {
-            override fun onSuccess(data: ArrayList<AccountInfo>?) {
+        var subscription = mService.getVideo(object : Service.ApiCallback<VideoInfo> {
+            override fun onSuccess(data: ArrayList<VideoInfo>?) {
 
-                account.value = data?.first()
+                videos.value = data
 
                 Timber.i("Success")
             }

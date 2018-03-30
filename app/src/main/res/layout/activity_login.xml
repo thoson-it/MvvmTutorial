@@ -7,9 +7,7 @@
         <variable
             name="loginViewModel"
             type="com.it.thoson.mvvmtutorial.viewmodel.LoginViewModel"/>
-        <variable
-            name="userInfo"
-            type="com.it.thoson.mvvmtutorial.viewmodel.U"/>
+
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -25,6 +23,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:hint="User Name"
+            android:text="@={loginViewModel.userInfo.userName}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -39,6 +38,7 @@
             android:layout_marginTop="8dp"
             android:hint="Password"
             android:inputType="textPassword"
+            android:text="@={loginViewModel.userInfo.password}"
             android:textColor="@android:color/black"
             android:textColorHint="@android:color/darker_gray"
             app:layout_constraintEnd_toEndOf="parent"

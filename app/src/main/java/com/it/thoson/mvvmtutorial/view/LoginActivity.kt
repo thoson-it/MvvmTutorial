@@ -1,5 +1,7 @@
 package com.it.thoson.mvvmtutorial.view
 
+import android.arch.lifecycle.Observer
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -15,11 +17,25 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_login)
-        val binding: ActivityLoginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login)
+        initDI()
+        bindingData()
 
+    }
+
+    private fun initDI() {
         (application as MyApplication).diComponent.inject(this)
+    }
 
+    private fun bindingData() {
+        val binding: ActivityLoginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         binding.loginViewModel = loginViewModel
+
+        loginViewModel.account.observe(this, Observer { account ->
+            handleLoginSuccess()
+        })
+    }
+
+    private fun handleLoginSuccess() {
+        startActivity(Intent(this, ListVideoActivity::class.java))
     }
 }

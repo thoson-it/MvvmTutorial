@@ -1,6 +1,7 @@
 package com.it.thoson.mvvmtutorial.di.module;
 
 import com.it.thoson.mvvmtutorial.di.ApplicationModule;
+import com.it.thoson.mvvmtutorial.view.ListVideoActivity;
 import com.it.thoson.mvvmtutorial.view.LoginActivity;
 
 import javax.inject.Singleton;
@@ -19,4 +20,5 @@ public interface DiComponent {
 //    void inject(ListVideoFragment fragment);
 
     void inject(LoginActivity loginActivity);
+    void inject(ListVideoActivity listVideoActivity);
 }

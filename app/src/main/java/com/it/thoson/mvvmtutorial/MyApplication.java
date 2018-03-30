@@ -8,6 +8,8 @@ import com.it.thoson.mvvmtutorial.di.module.NetworkModule;
 
 import java.io.File;
 
+import timber.log.Timber;
+
 /**
  * Created by sonlt on 3/29/18.
  */
@@ -21,6 +23,7 @@ public class MyApplication extends Application{
 
     private void init() {
         initDagger();
+        Timber.plant(new Timber.DebugTree());
     }
 
     private DiComponent diComponent;
